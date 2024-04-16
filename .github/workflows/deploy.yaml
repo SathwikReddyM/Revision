@@ -9,8 +9,8 @@ jobs:
   deploy:
     name: deploy to ec2
     runs-on: ubuntu-latest
-  
-  steps:
+    steps:
+    - uses: actions/checkout@v2
     - name: Deploy
       env:
         PRIVATE_KEY: ${{ secrets.key}}
