@@ -13,12 +13,14 @@ jobs:
     - uses: actions/checkout@v2
     - name: Deploy
       env:
-        PRIVATE_KEY: ${{secrets.key}}
-        HOST_NAME: "3.141.196.189"
+        PRIVATE_KEY: ${{secrets.KEY}}
+        HOST_NAME: ${{secrets.URL}}
         USER_NAME: ubuntu
       run:
-        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key &&
-        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@{HOST_NAME} &&
-        ls &&
+        echo "HI"
+        echo "$PRIVATE_KEY" > private_key
+        echo "$HOST_NAME"
+        chmod 600 private_key
+        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@{HOST_NAME}
         git pull &&
         python3 app.py
